@@ -10,13 +10,18 @@ class StoryController extends Controller
     
     public function index()
     {
-        //
+        $stories = Story::all();
+
+        return view('back.stories.index', [
+            'stories' => $stories
+        ]);
     }
 
     
     public function create()
     {
-        //
+        return view('back.stories.create', [
+        ]);
     }
 
     
@@ -28,7 +33,9 @@ class StoryController extends Controller
     
     public function show(Story $story)
     {
-        //
+        return view('stories.show', [
+            'story' => $story
+        ]);
     }
 
    
