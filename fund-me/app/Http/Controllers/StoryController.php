@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Story;
+use App\Models\Hashtag;
 use Illuminate\Http\Request;
 
 class StoryController extends Controller

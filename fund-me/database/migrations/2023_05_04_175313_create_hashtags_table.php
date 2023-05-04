@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stories', function (Blueprint $table) {
+        Schema::create('hashtags', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->string('text', 1000);
-            $table->decimal('sum', 8)->unsigned();
+            $table->unsignedBigInteger('story_id');
+            $table->foreign('story_id')->references('id')->on('stories');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stories');
+        Schema::dropIfExists('hashtags');
     }
 };
