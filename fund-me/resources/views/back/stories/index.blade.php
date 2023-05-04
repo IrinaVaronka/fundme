@@ -18,6 +18,11 @@
                     <h5 class="card-title">{{ $story->title }}</h5>
                     <p class="card-text">{{ $story->sum }}</p>
                     <a href="{{route('stories-show', $story)}}" class="btn btn-primary">Read story</a>
+                    <form action="{{route('stories-delete', $story)}}" method="post">
+                                        <button type="submit" class="btn btn-outline-danger">delete</button>
+                                        @csrf
+                                        @method('delete')
+                                    </form>
                 </div>
             </div>
             @empty

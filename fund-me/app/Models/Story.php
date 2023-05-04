@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Story extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title', 'text', 'sum'];
 }

@@ -2,70 +2,39 @@
 
 @section('content')
 
-<h1 class="text-center">Client information: {{$client->name}} {{$client->surname}} </h1>
+<h1 class="text-center">{{$story->title}} </h1>
 
-
-<ul class="list-group m-4">
-    <table class="table table-sm table-light table-striped table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Surname</th>
-                <th scope="col">Personal ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td scope="row">{{$client->name}}</th>
-                <td>{{$client->surname}}</td>
-                <td>{{$client->idPerson}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <h2 class="text-center">Accounts:</h2>
-    <table class="table table-sm table-light table-striped table-bordered">
-        <thead>
-            <tr>
-
-                <th scope="col">Account number</th>
-                <th scope="col">Account`s amount</th>
-            </tr>
-        </thead>
-
-        @forelse($client->account as $account)
-        <tbody>
-            <tr>
-                <td scope="col">{{ $account->account }}
-                <div class="">
-                                    <form action="{{route('accounts-delete', $account)}}" method="post">
-                                        <button type="submit" class="btn btn-danger">delete</button>
-                                        @csrf
-                                        @method('delete')
-                                    </form>
-                                </div>
-                </td>
-                <td scope="col">{{ $account->amount }}
-                
-                </td>
-            </tr>
-            
-        </tbody>
-        </li>
-        @empty
-        <li class="list-group-item">
-            <div class="client-line noAcc">No accounts</div>
-        </li>
-        @endforelse
-    </table>
-</ul>
-<div class="buttons"><a href="{{route('accounts-create', ['id' => $client])}}" class="btn btn-success">New account</a></div>
-<div class="buttons">
-    <form action="{{route('clients-delete', $client)}}" method="post">
-        <button type="submit" class="btn btn-danger">Delete client</button>
-        @csrf
-        @method('delete')
-    </form>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
-</ul>
+<div class="card-body">
+    <p class="card-text">{{$story->text}}</p>
+    {{-- <a href="{{route('stories-edit', $story)}}" class="btn btn-primary">Edit Story</a> --}}
+  </div>
+
+
+ 
+       
+</div>
+
+
 @endsection

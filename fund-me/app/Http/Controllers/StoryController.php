@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Story;
+use Illuminate\Http\Request;
 
 class StoryController extends Controller
 {
@@ -27,13 +28,19 @@ class StoryController extends Controller
     
     public function store(Request $request)
     {
-        //
+        Story::create([
+            'title' => $request->title,
+            'text' => $request->text,
+            'sum' => $request->sum
+        ]);
+
+        return redirect()->route('stories-index');
     }
 
     
     public function show(Story $story)
     {
-        return view('stories.show', [
+        return view('back.stories.show', [
             'story' => $story
         ]);
     }
@@ -41,18 +48,26 @@ class StoryController extends Controller
    
     public function edit(Story $story)
     {
-        //
+        return view('back.stories.edit', [
+            'story' => $story
+        ]);
     }
 
     
     public function update(Request $request, Story $story)
     {
-        //
+        $story->title = $request->title;
+        $story->text = $request->text;
+        $story->sum = $request->sum;
+        $story->save();
+        return redirect()
+            ->route('stories-index');
     }
 
     
     public function destroy(Story $story)
     {
-        //
+        $story->delete();
+        return redirect()->route('stories-index');
     }
 }
