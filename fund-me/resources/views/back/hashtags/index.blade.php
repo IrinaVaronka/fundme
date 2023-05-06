@@ -3,35 +3,32 @@
 @section('content')
 
 <form class="mt-4">
-    <h1 class="text-center">All stories</h1>
+    <h1 class="text-center">All hashtags</h1>
 
-    <form action="{{route('stories-index')}}" method="get" class="mt-4">
+    <form action="{{route('hashtags-index')}}" method="get" class="mt-4">
 
 
     </form>
     <div class="container">
         <div class="row">
-            @forelse($stories as $story)
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $story->title }}</h5>
-                    <p class="card-text">{{ $story->sum }}</p>
-                    <a href="{{route('stories-show', $story)}}" class="btn btn-primary">Read story</a>
-                    <form action="{{route('stories-delete', $story)}}" method="post">
-                                        <button type="submit" class="btn btn-outline-danger">delete</button>
-                                        @csrf
-                                        @method('delete')
-                                    </form>
+            @forelse($hashtags as $hashtag)
+            <ul class="list-group">
+                <li class="list-group-item">{{ $hashtag->title }}</li>
+            </ul>
+                    <form action="{{route('hashtags-delete', $hashtag)}}" method="post">
+                        <button type="submit" class="btn btn-outline-danger">delete</button>
+                        @csrf
+                        @method('delete')
+                    </form>
                 </div>
             </div>
             @empty
-            <div class="card" style="width: 18rem;">
+            <ul class="list-group">
 
 
-                <div class="empty">No stories yet</div>
-
-            </div>
+                <div class="empty">No hashtags yet</div>
+            </ul>
+            
             @endforelse
             </ul>
 

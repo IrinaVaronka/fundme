@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Hashtag;
-
 use Illuminate\Http\Request;
 
 class HashtagController extends Controller
@@ -12,7 +11,11 @@ class HashtagController extends Controller
     
     public function index()
     {
-        //
+        $hashtags = Hashtag::all();
+
+        return view('back.hashtags.index', [
+            'hashtags' => $hashtags
+        ]);
     }
 
     
@@ -25,7 +28,12 @@ class HashtagController extends Controller
     
     public function store(Request $request)
     {
-        //
+        Hashtag::create([
+            'title' => $request->title,
+            
+        ]);
+
+        return redirect()->route('hashtags-index');
     }
 
     
