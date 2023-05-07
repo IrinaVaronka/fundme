@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/back/sass/app.scss', 'resources/back/js/app.js'])
+    @vite(['resources/front/sass/app.scss', 'resources/front/js/app.js'])
 </head>
 <body>
     <div id="app">
@@ -30,38 +30,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Stories
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('stories-index') }}">
-                                    Stories list
-                                </a>
-                                <a class="dropdown-item" href="{{ route('stories-create') }}">
-                                    New story
-                                </a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Hashtags
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('hashtags-index') }}">
-                                    Hashtags list
-                                </a>
-                                <a class="dropdown-item" href="{{ route('hashtags-create') }}">
-                                    Create a hashtag
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

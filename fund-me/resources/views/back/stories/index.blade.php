@@ -6,9 +6,8 @@
     <h1 class="text-center">All stories</h1>
 
     <form action="{{route('stories-index')}}" method="get" class="mt-4">
-
-
     </form>
+
     <div class="container">
         <div class="row">
             @forelse($stories as $story)
@@ -28,8 +27,8 @@
                     <button type="submit" class="btn btn-outline-danger">delete</button>
                     @csrf
                     @method('delete')
-</form>
-@endif
+                </form>
+                @endif
 </div>
 </div>
 @empty
@@ -42,6 +41,6 @@
 @endforelse
 </ul>
 
-</div>
+    </div>
 </div>
 @endsection
