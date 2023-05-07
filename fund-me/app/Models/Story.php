@@ -9,5 +9,11 @@ class Story extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'text', 'sum'];
+    protected $fillable = ['title', 'text', 'sum', 'hashtag_id'];
+
+
+    public function hashtag()
+    {
+        return $this->hasMany(Hashtag::class);
+    }
 }

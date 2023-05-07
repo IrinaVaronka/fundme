@@ -17,24 +17,31 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $story->title }}</h5>
                     <p class="card-text">{{ $story->sum }}</p>
-                    <a href="{{route('stories-show', $story)}}" class="btn btn-primary">Read story</a>
-                    <form action="{{route('stories-delete', $story)}}" method="post">
-                                        <button type="submit" class="btn btn-outline-danger">delete</button>
-                                        @csrf
-                                        @method('delete')
-                                    </form>
+                    {{-- @foreach($story->hastag as $hashtag)
+                        <div class="hashtag">
+                            {{$hashtag->title}}
                 </div>
-            </div>
-            @empty
-            <div class="card" style="width: 18rem;">
+                @endforeach --}}
+                <a href="{{route('stories-show', $story)}}" class="btn btn-primary">Read story</a>
+                @if(Auth::user()->role < 5) 
+                <form action="{{route('stories-delete', $story)}}" method="post">
+                    <button type="submit" class="btn btn-outline-danger">delete</button>
+                    @csrf
+                    @method('delete')
+</form>
+@endif
+</div>
+</div>
+@empty
+<div class="card" style="width: 18rem;">
 
 
-                <div class="empty">No stories yet</div>
+    <div class="empty">No stories yet</div>
 
-            </div>
-            @endforelse
-            </ul>
+</div>
+@endforelse
+</ul>
 
-        </div>
-    </div>
-    @endsection
+</div>
+</div>
+@endsection
