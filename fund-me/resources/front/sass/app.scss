@@ -4,5 +4,23 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+.story {
+    padding: 70px 70px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+.buy-front {
+    padding: 70px 70px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.nav-item {
+    svg {
+        height: 50px;
+        width: 50px;
+    }
+}
+
 
 

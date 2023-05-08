@@ -26,17 +26,7 @@
                             {{$hashtag->title}}
                         </div>
                         @endforeach --}}
-                        <a href="{{route('stories-show', $story)}}" class="btn btn-primary">Read story</a>
-                        <div class="buy">
-                            <span>Donation goal: {{$story->sum}} EUR</span>
-                            <section class="--add--to--cart" data-url="#">
-                                <input type="hidden" name="id" value={{$story->id}}>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Yout donation" aria-label="Your donation" aria-describedby="button-addon2">
-                                    <button class="btn btn-success" type="button" id="button-addon2">Donate now</button>
-                                </div>
-                            </section>
-                        </div>
+                        <a href="{{route('front-show-story', $story)}}" class="btn btn-primary">Read story</a>
                     </div>
                 </div>
                 @empty

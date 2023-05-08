@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoryController as S;
 use App\Http\Controllers\HashtagController as H;
 use App\Http\Controllers\FrontController as F;
+use App\Http\Controllers\CartController as CART;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +19,16 @@ use App\Http\Controllers\FrontController as F;
 
 Route::name('front-')->group(function () {
     Route::get('/', [F::class, 'index'])->name('index');
+    Route::get('/story/{story}', [F::class, 'showStory'])->name('show-story');
 
 });
+
+
+Route::prefix('cart')->name('cart-')->group(function () {
+    Route::put('/add', [CART::class, 'add'])->name('add');
+    
+});
+
 
 Route::prefix('stories')->name('stories-')->group(function () {
     Route::get('/', [S::class, 'index'])->name('index')->middleware('role:admin|client');

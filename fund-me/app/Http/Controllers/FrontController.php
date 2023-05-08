@@ -15,4 +15,11 @@ class FrontController extends Controller
             'stories' => $stories
         ]);
     }
+
+    public function showStory(Story $story)
+    {
+        return view('front.story', [
+            'story' => $story,
+        ]);
+    }
 }
