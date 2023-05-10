@@ -20,7 +20,8 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $story->title }}</h5>
-                            <p class="card-text">{{ $story->sum }}</p>
+                            <p class="card-text">{{ $story->donate }} USD raised of {{ $story->sum }} USD goal</p>
+                            <p class="card-text">left to raise money: {{$story->sum-$story->donate}} USD</p>
                             {{-- @foreach($story->hastag as $hashtag)
                         <div class="hashtag">
                             {{$hashtag->title}}

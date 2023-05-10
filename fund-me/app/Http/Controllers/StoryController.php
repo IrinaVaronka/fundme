@@ -32,7 +32,8 @@ class StoryController extends Controller
         Story::create([
             'title' => $request->title,
             'text' => $request->text,
-            'sum' => $request->sum
+            'sum' => $request->sum,
+            'donate' => $request->donate
         ]);
 
         return redirect()->route('stories-index');
@@ -60,9 +61,33 @@ class StoryController extends Controller
         $story->title = $request->title;
         $story->text = $request->text;
         $story->sum = $request->sum;
+        $story->donate = $request->donate;
         $story->save();
         return redirect()
             ->route('stories-index');
+    }
+
+
+    public function editsum(Story $story)
+    {
+        return view('accounts.edit', [
+            'donate' => $donate
+        ]);
+    }
+
+    
+    public function updatesum(Request $request, Story $story)
+    {
+
+        if(!$request->type) {
+            $story->donate = $story->donate + $request->donate;
+            $story->save();
+        
+            return redirect()
+            ->route('stories-index')
+            ->with('info', 'Funds was added');  
+     
+        }
     }
 
     

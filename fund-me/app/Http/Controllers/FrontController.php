@@ -22,4 +22,6 @@ class FrontController extends Controller
             'story' => $story,
         ]);
     }
+
+    
 }

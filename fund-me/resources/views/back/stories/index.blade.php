@@ -15,12 +15,8 @@
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ $story->title }}</h5>
-                    <p class="card-text">{{ $story->sum }}</p>
-                    {{-- @foreach($story->hastag as $hashtag)
-                        <div class="hashtag">
-                            {{$hashtag->title}}
-                </div>
-                @endforeach --}}
+                    <p class="card-text">{{ $story->donate }} raised of {{ $story->sum }} goal</p>
+                    <p class="card-text">left to raise money: {{$story->sum-$story->donate}} USD</p>
                 <a href="{{route('stories-show', $story)}}" class="btn btn-primary">Read story</a>
                 @if(Auth::user()->role < 5) 
                 <form action="{{route('stories-delete', $story)}}" method="post">

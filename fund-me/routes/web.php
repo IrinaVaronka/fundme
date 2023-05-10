@@ -20,14 +20,8 @@ use App\Http\Controllers\CartController as CART;
 Route::name('front-')->group(function () {
     Route::get('/', [F::class, 'index'])->name('index');
     Route::get('/story/{story}', [F::class, 'showStory'])->name('show-story');
-
 });
 
-
-Route::prefix('cart')->name('cart-')->group(function () {
-    Route::put('/add', [CART::class, 'add'])->name('add');
-    
-});
 
 
 Route::prefix('stories')->name('stories-')->group(function () {
@@ -38,6 +32,8 @@ Route::prefix('stories')->name('stories-')->group(function () {
     Route::get('/edit/{story}', [S::class, 'edit'])->name('edit')->middleware('role:admin');
     Route::put('/edit/{story}', [S::class, 'update'])->name('update')->middleware('role:admin');
     Route::delete('/delete/{story}', [S::class, 'destroy'])->name('delete')->middleware('role:admin');
+    Route::get('/editsum/{story}', [S::class, 'editsum'])->name('editsum')->middleware('role:admin|client');
+    Route::put('/editsum/{story}', [S::class, 'updatesum'])->name('updatesum')->middleware('role:admin|client');
     });
 
 Route::prefix('hashtags')->name('hashtags-')->group(function () {

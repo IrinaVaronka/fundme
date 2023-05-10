@@ -27,13 +27,23 @@
 </div>
 
 <div class="card-body">
-    <p class="card-text">{{$story->text}}</p>
-    {{-- <a href="{{route('stories-edit', $story)}}" class="btn btn-primary">Edit Story</a> --}}
-  </div>
-
-
- 
-       
+    <p class="card text-center story">{{$story->text}}</p>
+  </div> 
+  <div class="buy-front">
+                            <span>Donation goal: {{$story->sum}} EUR</span>
+                            <p class="card-text">left to raise money: {{$story->sum-$story->donate}} USD</p>
+                            <form action="{{route('stories-updatesum', $story)}}" method="post">
+                            
+                                <input type="hidden" name="id" value={{$story->id}}>
+                                <div class="input-group mb-3 mt-3">
+                                    <input type="text" class="form-control" placeholder="Yout donation" aria-label="Your donation" aria-describedby="button-addon2" name="donate">
+                                    <button class="btn btn-success" id="submit" type="submit">Donate now</button>
+                                    @csrf
+                            @method('put')
+                                </div>
+                            
+                            </form>
+                        </div>  
 </div>
 
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->string('text', 1000);
+            $table->decimal('donate', 8);
             $table->decimal('sum', 8)->unsigned();
             $table->timestamps();
         });
