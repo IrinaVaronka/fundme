@@ -29,11 +29,29 @@ class StoryController extends Controller
     
     public function store(Request $request)
     {
+        $photo = $request->photo;
+
+        if ($photo) {
+            
+
+        $name = $photo->getClientOriginalName();
+
+        $name = rand(1000000, 9000000) . '-' . $name;
+
+        $path = public_path() . '/stories-photo';
+
+        $photo->move($path, $name);
+
+        }
+
+       
+
         Story::create([
             'title' => $request->title,
             'text' => $request->text,
             'sum' => $request->sum,
-            'donate' => $request->donate
+            'donate' => $request->donate,
+            'photo' => $name ?? null
         ]);
 
         return redirect()->route('stories-index');
@@ -93,6 +111,11 @@ class StoryController extends Controller
     
     public function destroy(Story $story)
     {
+        if($story->photo) {
+            $photo = public_path() . '/stories-photo/' . $story->photo;
+            unlink($photo);
+        }
+
         $story->delete();
         return redirect()->route('stories-index');
     }

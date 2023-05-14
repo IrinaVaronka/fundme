@@ -23,5 +23,8 @@ class FrontController extends Controller
         ]);
     }
 
-    
+    public function histories(Request $request) 
+    {
+        dump($request->story());
+    }
 }

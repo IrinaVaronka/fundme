@@ -9,11 +9,16 @@ class Story extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'text', 'sum', 'donate'];
+    protected $fillable = ['title', 'text', 'sum', 'donate', 'photo'];
 
 
     public function hashtag()
     {
         return $this->hasMany(Hashtag::class);
+    }
+
+    public function history() 
+    {
+         return $this->hasMany(History::class);
     }
 }

@@ -2,6 +2,7 @@
 /node_modules
 /public/build
 /public/hot
+/public/stories-photo
 /public/storage
 /storage/*.key
 /vendor

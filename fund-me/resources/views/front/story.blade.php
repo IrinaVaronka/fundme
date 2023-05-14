@@ -32,17 +32,20 @@
    <div class="buy-front">
                             <span>Donation goal: {{$story->sum}} EUR</span>
                             <p class="card-text">left to raise money: {{$story->sum-$story->donate}} USD</p>
+                            @guest
+                              <h3>Please register or login to donate</h3>
+                            @else
                             <form action="{{route('stories-updatesum', $story)}}" method="post">
-                            
                                 <input type="hidden" name="id" value={{$story->id}}>
                                 <div class="input-group mb-3 mt-3">
                                     <input type="text" class="form-control" placeholder="Yout donation" aria-label="Your donation" aria-describedby="button-addon2" name="donate">
                                     <button class="btn btn-success" id="submit" type="submit">Donate now</button>
+                                    
                                     @csrf
                             @method('put')
                                 </div>
-                            
                             </form>
+                            @endguest
                         </div>  
 </div>
 

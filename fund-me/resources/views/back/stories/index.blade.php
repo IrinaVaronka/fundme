@@ -11,8 +11,13 @@
     <div class="container">
         <div class="row">
             @forelse($stories as $story)
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+            <div class="card photo" style="width: 18rem;">
+            @if($story->photo)
+                <img src="{{asset('/stories-photo') . '/'. $story->photo}}" class="card-img-top">
+                @else
+                <img src="{{asset('/stories-photo') . '/no-image.png'}}" class="card-img-top">
+                @endif
+           
                 <div class="card-body">
                     <h5 class="card-title">{{ $story->title }}</h5>
                     <p class="card-text">{{ $story->donate }} raised of {{ $story->sum }} goal</p>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('text', 1000);
             $table->decimal('donate', 8);
             $table->decimal('sum', 8)->unsigned();
+            $table->string('photo', 200)->nullable()->default(null);
             $table->timestamps();
         });
     }
