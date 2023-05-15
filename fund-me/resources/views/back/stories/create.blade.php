@@ -29,9 +29,21 @@
                         <div class="col-md-12">
                             <label class="form-label">Main photo</label>
                             <input type="file" class="form-control" name="photo">
-                            
                         </div> 
 
+                        <div class="col-md-12" data-gallery="0">
+                            <label class="form-label">Gallery photo <span class="rem">X</span></label>
+                            <input type="file" class="form-control">
+                        </div> 
+
+
+                        <div class="gallery-inputs">
+                        </div>
+
+                        <div class="form-button mt-3">
+                            <button id="submit" type="button" class="btn btn-secondary --add--gallery">Add more photo</button>
+                            
+                        </div>
 
                         <div class="form-button mt-3">
                             <button id="submit" type="submit" class="btn btn-primary">Add story</button>

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Story;
+use App\Models\Photo;
 use App\Models\Hashtag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class StoryController extends Controller
 {
@@ -33,7 +35,7 @@ class StoryController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|min:3|max:100',
             'text' => 'required|min:3|max:1000',
-            'donate' => 'required|integer|min:1|max:100000',
+            'donate' => 'required|integer|max:100000',
             'sum' => 'required|integer|min:1|max:100000',
             'photo' => 'sometimes|required|image|max:512',
             'gallery.*' => 'sometimes|required|image|max:512'
@@ -47,29 +49,40 @@ class StoryController extends Controller
         }
         
         $photo = $request->photo;
-
         if ($photo) {
+            //Image::configure(['driver' => 'imagick']);
             
 
         $name = $photo->getClientOriginalName();
-
         $name = rand(1000000, 9000000) . '-' . $name;
-
-        $path = public_path() . '/stories-photo';
-
+        $path = public_path() . '/stories-photo/';
         $photo->move($path, $name);
 
+        $img = Image::make($path . $name);
+        $img->resize(300, 200);
+        $img->save($path . 't_' . $name, 90);
+
         }
-
-       
-
-        Story::create([
+        $id = Story::create([
             'title' => $request->title,
             'text' => $request->text,
             'sum' => $request->sum,
             'donate' => $request->donate,
             'photo' => $name ?? null
-        ]);
+        ])->id;
+
+        foreach ($request->gallery ?? [] as $gallery) {
+            $name = $gallery->getClientOriginalName();
+            $name = rand(1000000, 9000000) . '-' . $name;
+            $path = public_path() . '/stories-photo/';
+            $gallery->move($path, $name); 
+            Photo::create([
+                
+                'story_id' => $id,
+                'photo' => $name
+            ]);
+        }
+
 
         return redirect()->route('stories-index');
     }
@@ -128,6 +141,14 @@ class StoryController extends Controller
     
     public function destroy(Story $story)
     {
+        if ($story->gallery->count()) {
+            foreach ($story->gallery as $gal) {
+                $photo = public_path() . '/stories-photo/' . $gal->photo;
+                unlink($photo);  
+                $gal->delete();
+            }
+        }
+        
         if($story->photo) {
             $photo = public_path() . '/stories-photo/' . $story->photo;
             unlink($photo);
