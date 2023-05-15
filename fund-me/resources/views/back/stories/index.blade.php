@@ -19,6 +19,8 @@
                 @endif
            
                 <div class="card-body">
+
+                
                     <h5 class="card-title">{{ $story->title }}</h5>
                     <p class="card-text">{{ $story->donate }} raised of {{ $story->sum }} goal</p>
                     <p class="card-text">left to raise money: {{$story->sum-$story->donate}} USD</p>

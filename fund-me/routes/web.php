@@ -21,6 +21,7 @@ Route::name('front-')->group(function () {
     Route::get('/', [F::class, 'index'])->name('index');
     Route::get('/story/{story}', [F::class, 'showStory'])->name('show-story');
     Route::get('/histories', [F::class, 'histories'])->name('histories');
+    
 });
 
 

@@ -24,6 +24,7 @@
                 @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $story->title }}</h5>
+                            @include('front.hearts')
                             <p class="card-text">{{ $story->donate }} USD raised of {{ $story->sum }} USD goal</p>
                             <p class="card-text">left to raise money: {{$story->sum-$story->donate}} USD</p>
                             
