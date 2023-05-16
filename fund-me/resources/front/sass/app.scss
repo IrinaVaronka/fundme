@@ -27,20 +27,7 @@
 
   }
 
-.hearts {
-    padding: 10px;
-    
-    [type=checkbox] + .heart {
-        &:after {
-            content: '\2661'
-        }
-    }
-    [type=checkbox]:checked + .heart {
-        &:after {
-            content: '\2661'
-        }
-    }
-}
+
 
 
 
