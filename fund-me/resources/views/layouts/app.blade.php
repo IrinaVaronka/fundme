@@ -48,19 +48,7 @@
                         </li>
 
                         {{-- @if(Auth::user()->role < 5) --}}
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Hashtags
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('hashtags-index') }}">
-                                    Hashtags list
-                                </a>
-                                <a class="dropdown-item" href="{{ route('hashtags-create') }}">
-                                    Create a hashtag
-                                </a>
-                            </div>
-                        </li>
+                        
                         {{-- @endif --}}
                     </ul>
 

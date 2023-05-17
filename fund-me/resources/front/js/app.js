@@ -21,3 +21,38 @@ document.querySelectorAll('.--donate').forEach(section => {
                 
     });
 });
+
+if (document.querySelector('.--tags')) {
+    document.querySelectorAll('.--add--new')
+        .forEach(i => {
+        i.addEventListener('input', e => {
+            axios.get(e.target.dataset.url + '?t=' + e.target.value)
+                .then(res => {
+                    i.closest('.--add').querySelector('.--tags--list').innerHTML = res.data.tags;
+                    initTagList(i.closest('.--add').querySelector('.--tags--list')); 
+                });
+            });
+            i.addEventListener('focus', e => {
+                i.closest('.--add').querySelector('.--tags--list').style.display = 'block';
+            });
+            i.addEventListener('blur', e => {
+                setTimeout(() => {
+                e.target.value = '';
+                i.closest('.--add').querySelector('.--tags--list').innerHTML = '';
+                i.closest('.--add').querySelector('.--tags--list').style.display = 'none';
+                }, 200);
+            })
+        })
+}
+
+const initTagList = tagList => {
+    tagList.querySelectorAll('.--list-tag')
+    .forEach(t => {
+        t.addEventListener('click', _ => {
+            axios.put(tagList.dataset.url, {tag: t.dataset.id})
+            .then(res => {
+                console.log(res.data)
+            });
+        });
+    });
+}

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Story;
 use App\Models\Photo;
-use App\Models\Hashtag;
+use App\Models\Tag;
+use App\Models\StoryTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -13,18 +14,90 @@ use Intervention\Image\ImageManagerStatic as Image;
 class StoryController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
         $stories = Story::all();
 
         
-        
+        $stories->map(function($s) use ($request) {
+            if(!$request->user()) {
+            $showVoteButton = false;
+         } else {
+            $rates = collect($s->rates);
+            $showVoteButton = $rates->first(fn($r) => $r['userId'] == $request->user()->id) ? false : true;
+         }
+         $s->showVoteButton = $showVoteButton;
+
+
+         $tagsId = $s->storyTag->pluck('tag_id')->all();
+         $tags = Tag::whereIn('id', $tagsId)->get();
+         $s->tags = $tags;
+
+         });
 
         return view('back.stories.index', [
             'stories' => $stories,
             
         ]);
     }
+
+    public function getTagsList(Request $request)
+    {
+        $tag = $request->t ?? '';
+
+
+        if ($tag) {
+            $tags = Tag::where('title', 'like', '%'.$tag.'%')
+            ->limit(5)
+            ->get();
+        } else {
+            $tags = [];
+        }
+        
+        $html = view('front.tag-search-list')->with(['tags' => $tags])->render();
+        
+        return response()->json([
+            'tags' => $html,
+        ]);
+    }
+
+    public function addTag(Request $request, Story $story)
+    {
+        $tagId = $request->tag ?? 0;
+
+        $tag = Tag::find($tagId);
+
+        if (!$tag) {
+
+            return response()->json([
+                'message' => 'Invalid tag id',
+                'status' => 'error'
+            ]);  
+        }
+
+        $tagsId = $story->storyTag->pluck('tag_id')->all();
+
+        if(in_array($tagId, $tagsId)) {
+            return response()->json([
+                'message' => 'Tag exists',
+                'status' => 'error'
+            ]);
+        }
+
+        StoryTag::create([
+            'tag_id' => $tagId,
+            'story_id' => $story->id
+        ]);
+
+
+        return response()->json([
+            'message' => 'Tag added',
+            'status' => 'ok', 
+            'tag' => $tag->title
+        ]);
+
+    }
+
 
     
     public function create()

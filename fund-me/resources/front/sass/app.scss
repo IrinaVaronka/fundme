@@ -27,6 +27,75 @@
 
   }
 
+  .tags {
+    display: flex;
+    padding: 0 0 20px 0;
+    .tag {
+        color: black;
+        padding: 0 7px;
+        font-size: 20px;
+        position: relative;
+        &::before {
+            content: '#';
+            font-weight: bold;
+            font-size: 20px;
+        }
+        i{ 
+            &::after {
+              content: '\2573';
+                      position: relative;
+                      top: -4px;
+                      font-size: 10px;
+                      color: black;
+                      padding: 0 0 0 5px;
+                      cursor: pointer;
+                      font-style: normal;
+          } 
+        }
+        
+    }
+  } 
+  
+  .add {
+    padding: 0 0 0 12px;
+    position: relative;
+    input {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid black;
+        color: black;
+       
+        height: 15px;
+    }
+    &::before {
+        content: '#';
+        font-weight: bold;
+        font-size: 18px;
+        color: black;
+    }
+   
+  .list {
+    display: none;
+    position: absolute;
+    padding: 20px;
+    border: 1px solid skyblue;
+    background-color: white;
+    left: 52px;
+    top: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    .list-tag {
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+          background-color: darkolivegreen;
+          color: white;
+      }
+  }
+  }
+  
+    
+  }
    
 
 

@@ -12,6 +12,7 @@
         <div class="row">
             @forelse($stories as $story)
             <div class="card photo" style="width: 18rem;">
+            @include('back.tags')
             @if($story->photo)
             
                 <img class="main-img" src="{{asset('/stories-photo') . '/t_'. $story->photo}}" class="card-img-top">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Story;
 use App\Models\Photo;
 use App\Models\Tag;
+use App\Models\StoryTag;
 
 class FrontController extends Controller
 {
@@ -55,8 +56,28 @@ class FrontController extends Controller
         ]);
     }
 
-    public function addTag(Request $request, Tag $tag)
+    public function addTag(Request $request, Story $story)
     {
+        $tagId = $request->tag ?? 0;
+        $tagsId = $story->storyTag->pluck('tag_id')->all();
+
+        if(!$tagId || in_array($tagId, $tagsId)) {
+            return response()->json([
+                'message' => 'Tag exists',
+                'status' => 'error'
+            ]);
+        }
+
+        StoryTag::create([
+            'tag_id' => $tagId,
+            'story_id' => $story->id
+        ]);
+
+
+        return response()->json([
+            'message' => 'Tag added',
+            'status' => 'ok'
+        ]);
 
     }
 
