@@ -22,6 +22,9 @@ Route::name('front-')->group(function () {
     Route::get('/story/{story}', [F::class, 'showStory'])->name('show-story');
     Route::get('/histories', [F::class, 'histories'])->name('histories');
     Route::put('/vote/{story}', [F::class, 'vote'])->name('vote')->middleware('role:admin|client');
+    Route::get('/tags-list', [F::class, 'getTagsList'])->name('tags-list')->middleware('role:admin|client');
+    Route::put('/add-tag/{story}', [F::class, 'addTag'])->name('add-tag')->middleware('role:admin|client');
+    Route::post('/add-new-tag/{story}', [F::class, 'addNewTag'])->name('add-new-tag')->middleware('role:admin|client');
     
 });
 

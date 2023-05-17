@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('donate', 8);
             $table->decimal('sum', 8)->unsigned();
             $table->string('photo', 200)->nullable()->default(null);
-            $table->decimal('rate', 20)->unsigned()->nullable()->default(null);
+            $table->decimal('rate', 20, 0)->unsigned()->nullable()->default(null);
             $table->json('rates')->default('[]');
             $table->timestamps();
         });

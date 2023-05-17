@@ -28,4 +28,9 @@ class Story extends Model
     {
          return $this->hasMany(Photo::class, 'story_id', 'id');
     }
+
+    public function storyTag()
+    {
+        return $this->hasMany(storyTag::class);
+    }
 }

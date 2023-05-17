@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Story;
 use App\Models\Photo;
+use App\Models\Tag;
 
 class FrontController extends Controller
 {
@@ -21,6 +22,11 @@ class FrontController extends Controller
          }
          $s->showVoteButton = $showVoteButton;
 
+
+         $tagsId = $s->storyTag->pluck('tag_id')->all();
+         $tags = Tag::whereIn('id', $tagsId)->get();
+         $s->tags = $tags;
+
          });
 
         
@@ -29,11 +35,36 @@ class FrontController extends Controller
         ]);
     }
 
+    public function getTagsList(Request $request)
+    {
+        $tag = $request->t ?? '';
+
+
+        if ($tag) {
+            $tags = Tag::where('title', 'like', '%'.$tag.'%')
+            ->limit(5)
+            ->get();
+        } else {
+            $tags = [];
+        }
+        
+        $html = view('front.tag-search-list')->with(['tags' => $tags])->render();
+        
+        return response()->json([
+            'tags' => $html,
+        ]);
+    }
+
+    public function addTag(Request $request, Tag $tag)
+    {
+
+    }
+
+
     public function showStory(Story $story)
     {
         $photos = Photo::all();
-        //  dump($photos);
-        //  die;
+        
         return view('front.story', [
             'story' => $story,
             'photos' => $photos

@@ -7,19 +7,19 @@ if (document.querySelector('.--add--gallery')) {
 
     let g = 0;
 
-document.querySelector('.--add--gallery')
-.addEventListener('click', _ => {
-   const input = document.querySelector('[data-gallery="0"]').cloneNode(true);
-   g++;
-   input.dataset.gallery = g;
-   input.querySelector('input').setAttribute('name', 'gallery[]');
-   input.querySelector('span')
-    .addEventListener('click', e => {
-        e.target.closest('.col-md-12').remove();
-    });
+    document.querySelector('.--add--gallery')
+        .addEventListener('click', _ => {
+            const input = document.querySelector('[data-gallery="0"]').cloneNode(true);
+            g++;
+            input.dataset.gallery = g;
+            input.querySelector('input').setAttribute('name', 'gallery[]');
+            input.querySelector('span')
+                .addEventListener('click', e => {
+                    e.target.closest('.col-md-12').remove();
+                });
 
-   document.querySelector('.gallery-inputs').append(input);
-})
+            document.querySelector('.gallery-inputs').append(input);
+        })
 }
 
 document.querySelectorAll('.hearts input')
@@ -35,7 +35,25 @@ document.querySelectorAll('.hearts input')
                 i.closest('.hearts').querySelectorAll('input')
                     .forEach(s => s.dataset.heart >= heart ? s.checked = false : s.checked = true);
             }
-            
+
         });
     });
+
+
+if (document.querySelector('.--tags')) {
+    document.querySelectorAll('.--add--new')
+        .forEach(i => {
+        i.addEventListener('input', e => {
+            axios.get(e.target.dataset.url + '?t=' + e.target.value)
+                .then(res => {
+                    i.closest('.--add').querySelector('.--tags--list').innerHTML = res.data.tags;
+                    initTagList(); 
+                });
+            })
+        });
+}
+
+const initTagList = _ => {
+
+}
 

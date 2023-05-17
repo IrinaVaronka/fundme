@@ -5,9 +5,6 @@
     <div class="row">
 
         
-
-
-
         <form class="mt-4">
             <h1 class="text-center">All stories</h1>
 
@@ -15,6 +12,7 @@
                 <div class="row">
                     @forelse($stories as $story)
                     <div class="card" style="width: 18rem;">
+                    @include('front.tags')
                         @if($story->photo)
                 <img class="main-img" src="{{asset('/stories-photo') . '/t_'. $story->photo}}" class="card-img-top">
                 @else

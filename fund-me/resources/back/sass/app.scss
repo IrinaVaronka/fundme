@@ -192,4 +192,53 @@ span.rem {
   margin: 20px;
 }
 
+.tags {
+  display: flex;
+  padding: 0 0 20px 0;
+  .tag {
+      color: black;
+      padding: 0 7px;
+      font-size: 20px;
+      position: relative;
+      &::before {
+          content: '#';
+          font-weight: bold;
+          font-size: 20px;
+      }
+  }
+} 
 
+.add {
+  padding: 0 0 0 12px;
+  position: relative;
+  input {
+      outline: none;
+      border: none;
+      border-bottom: 1px solid black;
+      color: black;
+     
+      height: 15px;
+  }
+  &::before {
+      content: '#';
+      font-weight: bold;
+      font-size: 18px;
+      color: black;
+  }
+.list {
+  display: none;
+  .list-tag {
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+        background-color: darkolivegreen;
+        color: white;
+    }
+}
+}
+input:focus + .list {
+  display: block;
+
+}
+  
+}
