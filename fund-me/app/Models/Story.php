@@ -9,8 +9,10 @@ class Story extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'text', 'sum', 'donate', 'photo'];
-
+    protected $fillable = ['title', 'text', 'sum', 'donate', 'photo', 'rate', 'rates'];
+    protected $casts = [
+        'rates' => 'array',
+    ];
 
     public function hashtag()
     {

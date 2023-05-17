@@ -17,8 +17,12 @@ class StoryController extends Controller
     {
         $stories = Story::all();
 
+        
+        
+
         return view('back.stories.index', [
-            'stories' => $stories
+            'stories' => $stories,
+            
         ]);
     }
 
@@ -157,4 +161,6 @@ class StoryController extends Controller
         $story->delete();
         return redirect()->route('stories-index');
     }
+
+
 }

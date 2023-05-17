@@ -115,6 +115,7 @@
   padding: 70px 70px;
   margin-left: 300px;
   margin-right: 300px;
+
 }
 .buy-front {
   padding: 70px 70px;
@@ -122,7 +123,7 @@
   margin-right: 300px;
 }
 
-.photo img {
+.photo main-img {
   margin-top: 10px;
 }
 
@@ -149,17 +150,44 @@ span.rem {
 }
 
 .hearts {
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
   
   [type=checkbox] + .heart {
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+    user-select: none;
       &:after {
           content: '\2661'
       }
   }
   [type=checkbox]:checked + .heart {
       &:after {
-          content: '\2661';
-          color:red;
+          content: '\2665';
+          
       }
   }
+  [type=checkbox] {
+    display: none;
+}
+.result {
+  font-size: 17px;
+  font-weight: bold;
+  bottom: 7px;
+  position: relative;
+  padding: 0 10px;
+  margin-top: 10px;
+  
+  span {
+      font-size: 12px;
+      font-weight: normal;
+  }
+}
+
+}
+
+.card {
+  margin: 20px;
 }

@@ -20,6 +20,22 @@ document.querySelector('.--add--gallery')
 
    document.querySelector('.gallery-inputs').append(input);
 })
-
-
 }
+
+document.querySelectorAll('.hearts input')
+    .forEach(i => {
+        i.addEventListener('change', _ => {
+            const star = i.dataset.heart;
+            const isChecking = i.checked;
+
+            if (isChecking) {
+                i.closest('.hearts').querySelectorAll('input')
+                    .forEach(s => s.dataset.heart <= heart ? s.checked = true : s.checked = false);
+            } else {
+                i.closest('.hearts').querySelectorAll('input')
+                    .forEach(s => s.dataset.heart >= heart ? s.checked = false : s.checked = true);
+            }
+            
+        });
+    });
+

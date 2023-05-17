@@ -21,6 +21,7 @@ Route::name('front-')->group(function () {
     Route::get('/', [F::class, 'index'])->name('index');
     Route::get('/story/{story}', [F::class, 'showStory'])->name('show-story');
     Route::get('/histories', [F::class, 'histories'])->name('histories');
+    Route::put('/vote/{story}', [F::class, 'vote'])->name('vote')->middleware('role:admin|client');
     
 });
 
@@ -36,6 +37,7 @@ Route::prefix('stories')->name('stories-')->group(function () {
     Route::delete('/delete/{story}', [S::class, 'destroy'])->name('delete')->middleware('role:admin');
     Route::get('/editsum/{story}', [S::class, 'editsum'])->name('editsum')->middleware('role:admin|client');
     Route::put('/editsum/{story}', [S::class, 'updatesum'])->name('updatesum')->middleware('role:admin|client');
+    
     });
 
 Route::prefix('hashtags')->name('hashtags-')->group(function () {
