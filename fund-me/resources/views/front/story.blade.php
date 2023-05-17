@@ -6,15 +6,19 @@
 
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" >
+    <img class="gallery" src="{{asset('/stories-photo') . '/'. $story->photo}}" class="d-block w-50" >
+    @foreach($photos as $p)
+    @if($p->story_id == $story->id)
+       <div class="carousel-inner">
+      <img class="gallery" src="{{asset('/stories-photo') . '/'. $p->photo}}" class="d-block w-50" >
+     
+
     </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" >
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" >
-    </div>
+    @endif
+     
+    @endforeach
+    
+    
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

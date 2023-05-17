@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Story;
+use App\Models\Photo;
 
 class FrontController extends Controller
 {
@@ -30,8 +31,13 @@ class FrontController extends Controller
 
     public function showStory(Story $story)
     {
+        $photos = Photo::all();
+        //  dump($photos);
+        //  die;
         return view('front.story', [
             'story' => $story,
+            'photos' => $photos
+            
         ]);
     }
 

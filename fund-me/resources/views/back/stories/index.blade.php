@@ -13,6 +13,7 @@
             @forelse($stories as $story)
             <div class="card photo" style="width: 18rem;">
             @if($story->photo)
+            
                 <img class="main-img" src="{{asset('/stories-photo') . '/t_'. $story->photo}}" class="card-img-top">
                 @else
                 <img src="{{asset('/stories-photo') . '/no-image.png'}}" class="card-img-top">
