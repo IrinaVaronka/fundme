@@ -23,8 +23,10 @@
                             <input class="form-control" type="text" name="sum" placeholder="Sum you need" value={{old('sum')}}>
                         </div>
                         <div class="col-md-12">
-                            <input type="hidden" class="form-control" type="text" name="donate" placeholder="initial sum" value="0">
+                            <input type="hidden" class="form-control" type="text" name="donate"  value="0">
                         </div>
+
+                       
 
                         <div class="col-md-12">
                             <label class="form-label">Main photo</label>

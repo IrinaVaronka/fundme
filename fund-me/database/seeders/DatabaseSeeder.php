@@ -28,5 +28,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        foreach([
+            'dog',
+            'cat',
+            'operation',
+            'homeless',
+            'feed'
+        ] as $title) {
+            DB::table('tags')->insert([
+                'title' => $title,
+            ]);
+        }
+
+
     }
 }
